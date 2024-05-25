@@ -39,7 +39,6 @@ import {
 import { getNowFormatDate, Secret } from "../../utils//tools";
 
 
-import fs from "fs-extra";
 
 export class SfacgClient extends SfacgHttp {
   // 接收账号信息和要做的，测试ck可用性，返回函数的返回内容和可用的线程

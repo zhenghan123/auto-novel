@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { v4 as uuidv4 } from "uuid";
-import crypto from "crypto"
+import crypto from "crypto";
 
 export class SfacgHttp {
   static readonly HOST = "https://api.sfacg.com";
@@ -10,21 +10,19 @@ export class SfacgHttp {
   static readonly PASSWORD = "1a#$51-yt69;*Acv@qxq";
   static readonly SALT = "FN_Q29XHVmfV3mYX"; // new Salt for Sfacg 5.0 Upper
   static readonly DEVICE_TOKEN = uuidv4().toUpperCase();
-  private cookie: string | undefined
+  private cookie: string | undefined;
 
-   SetCookie(cookie: string) {
-    this.cookie = cookie
+  SetCookie(cookie: string) {
+    this.cookie = cookie;
   }
 
-   GetCookie() {
-    return this.cookie
+  GetCookie() {
+    return this.cookie;
   }
   protected async get<T, E = any>(url: string, query?: E): Promise<T> {
     let response: AxiosResponse;
     response = await axios.get<T>(url, this._client(query));
-    return url.startsWith("/sessions")
-      ? response.data.status
-      : response.data.data;
+    return response.data.data;
   }
 
   protected static async get_rss<E>(url: string): Promise<E> {
@@ -68,9 +66,8 @@ export class SfacgHttp {
         SFSecurity: this.sfSecurity(),
       },
       params: query,
-    }
+    };
   }
-
 
   private static _clientRss(): any {
     return {
@@ -80,8 +77,8 @@ export class SfacgHttp {
         "User-Agent": SfacgHttp.USER_AGENT_RSS,
         Accept: "image/webp,image/*,*/*;q=0.8",
         "Accept-Language": "zh-CN,zh-Hans;q=0.9",
-      }
-    }
+      },
+    };
   }
   private sfSecurity(): string {
     const uuid = uuidv4().toUpperCase();
@@ -95,4 +92,3 @@ export class SfacgHttp {
     return `nonce=${uuid}&timestamp=${timestamp}&devicetoken=${SfacgHttp.DEVICE_TOKEN}&sign=${hash}`;
   }
 }
-
