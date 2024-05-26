@@ -16,12 +16,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm
+          cache: pnpm
 
       - name: Install
-        run: npm i
+        run: pnpm i
 
-      - name: ts-node run
+      - name: tsx run
         env:
           SMS_USERNAME: ${{ secrets.SMS_USERNAME }}
           SMS_PASSWORD: ${{ secrets.SMS_PASSWORD }}
@@ -29,7 +29,7 @@ jobs:
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           REGIST_PASSWORD: ${{ secrets.REGIST_PASSWORD }}
-        run: npm run checkin
+        run: pnpm run checkin
 
       # # 其他可能的优化步骤
       # - name: Cache node modules
