@@ -62,7 +62,7 @@ export class SfacgHttp {
         cookie: this.cookie,
         Accept: "application/vnd.sfacg.api+json;version=1",
         "Accept-Language": "zh-Hans-CN;q=1",
-        "User-Agent": `boluobao/5.0.36(android;34)/H5/${SfacgHttp.DEVICE_TOKEN}/H5`,
+        "User-Agent": `boluobao/5.0.60(android;34)/H5/${SfacgHttp.DEVICE_TOKEN}/Google`,
         SFSecurity: this.sfSecurity(),
       },
       params: query,

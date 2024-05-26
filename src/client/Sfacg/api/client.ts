@@ -36,7 +36,8 @@ import {
   IaccountInfo,
   IexpiredInfo,
 } from "../types/ITypes";
-import { getNowFormatDate, Secret } from "../../utils//tools";
+import { getNowFormatDate, Secret } from "../../utils/tools";
+import { decrypt } from "../../utils/decrypt";
 
 
 
@@ -266,7 +267,7 @@ export class SfacgClient extends SfacgHttp {
       let res = await this.get<contentInfos>(`/Chaps/${chapId}`, {
         expand: "content",
       });
-      const content = res.expand.content;
+      const content = decrypt(res.expand.content);
       return content;
       // 待添加
     } catch (err: any) {
@@ -279,7 +280,7 @@ export class SfacgClient extends SfacgHttp {
     }
   }
 
-  static async image(url: string): Promise<any> {
+  async image(url: string): Promise<any> {
     try {
       const response: Buffer = await SfacgHttp.get_rss(url);
       return Buffer.from(response);
