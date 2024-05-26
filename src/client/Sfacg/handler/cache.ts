@@ -1,6 +1,6 @@
 import { IaccountInfo, _dbChapters, _dbNovels } from "../types/ITypes";
-import { Server } from "../../utils//db";
-import { colorize } from "../../utils//tools";
+import { Server } from "../../utils/db";
+import { colorize } from "../../utils/tools";
 import { SfacgClient } from "../api/client";
 import { novelInfo } from "../types/Types";
 

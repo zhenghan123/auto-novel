@@ -280,7 +280,7 @@ export class SfacgClient extends SfacgHttp {
     }
   }
 
-  async image(url: string): Promise<any> {
+  static async image(url: string): Promise<any> {
     try {
       const response: Buffer = await SfacgHttp.get_rss(url);
       return Buffer.from(response);

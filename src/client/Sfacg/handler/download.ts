@@ -10,7 +10,7 @@ import {
   question,
   questionAccount,
   selectBookFromList,
-} from "../../utils//tools";
+} from "../../utils/tools";
 import { novelInfo } from "../types/Types";
 
 const outputDir = path.join(process.cwd(), "output", "菠萝包轻小说");

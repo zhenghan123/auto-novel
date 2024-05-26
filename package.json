@@ -1,15 +1,12 @@
 {
-  "name": "@rcrwrate/crawler",
+  "name": "auto-novel",
   "version": "0.0.1",
   "description": "Crawler",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.ts",
   "scripts": {
-    "register": "ts-node ./src/auto/register.ts",
-    "checkin": "ts-node ./src/auto/checkIn.ts",
-    "build": "webpack  --mode production --config ./webpack.config.js",
-    "start": "node ./dist/index.js",
-    "dev": "webpack --mode production && node ./dist/index.js"
+    "test": "tsx ./src/auto/testdata.ts",
+    "register": "tsx ./src/auto/register.ts",
+    "checkin": "tsx ./src/auto/checkIn.ts"
   },
   "author": "Rcrwrate",
   "license": "MIT",
@@ -19,19 +16,13 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/uuid": "^9.0.8",
-    "ts-loader": "^9.5.1",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.5",
-    "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4"
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.43.4",
     "axios": "^1.7.2",
-    "bufferutil": "^4.0.8",
     "cli-table3": "^0.6.5",
-    "deasync": "^0.1.29",
-    "debug": "^4.3.4",
     "dotenv": "^16.4.5",
     "fs-extra": "^11.2.0",
     "uuid": "^9.0.1"
