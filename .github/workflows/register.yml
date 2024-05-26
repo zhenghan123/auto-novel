@@ -9,19 +9,23 @@ jobs:
     runs-on: windows-latest
     environment: supabase
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: npm
+          node-version: "22"
+          cache: pnpm
 
       - name: Install
-        run: npm i
+        run: pnpm i
 
-      - name: ts-node run
+      - name: tsx run
         env:
           SMS_USERNAME: ${{ secrets.SMS_USERNAME }}
           SMS_PASSWORD: ${{ secrets.SMS_PASSWORD }}
@@ -29,7 +33,7 @@ jobs:
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           REGIST_PASSWORD: ${{ secrets.REGIST_PASSWORD }}
-        run: npm run register
+        run: pnpm run register
 
       # # 其他可能的优化步骤
       # - name: Cache node modules

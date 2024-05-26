@@ -17,7 +17,3 @@ logs
 .idea/
 .vscode/
 *.sw*
-
-pnpm-lock.yaml
-package-lock.json
-bun.lockb
