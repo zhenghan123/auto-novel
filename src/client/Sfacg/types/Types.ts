@@ -31,7 +31,6 @@ export interface contentInfos_Expand {
   isBranch: boolean; // 是否为分支章节
 }
 
-
 // 小说信息
 export interface novelInfo {
   authorId: number; // 作者ID
@@ -49,7 +48,7 @@ export interface novelInfo {
   typeId: number; // 类型ID
   allowDown: boolean; // 是否允许下载
   addTime: string; // 添加时间
-  isSensitive: boolean; // 是否敏感 
+  isSensitive: boolean; // 是否敏感
   signStatus: string; // 签名状态
   categoryId: number; // 类别ID
   expand: novelInfo_Expand; // 扩展信息
@@ -74,8 +73,9 @@ export interface novels {
   isSensitive: boolean;
   signStatus: string;
   categoryId: number;
-}[]
-
+  expand: { sysTags: any[] };
+}
+[];
 
 // 小说信息的扩展信息
 export interface novelInfo_Expand {
@@ -104,9 +104,7 @@ export interface AuthorInfo {
     nickName: string;
     expand: { youfollow: boolean; fansNum: number };
   };
-};
-
-
+}
 
 // 系统标签
 export interface SysTags {
@@ -127,7 +125,7 @@ export interface userInfo {
   isAuthor: boolean; // 是否作者
   phoneNum: string; // 电话号码
   registerDate: string; // 注册日期
-  expand: { welfareCoin: number } // 金币
+  expand: { welfareCoin: number }; // 金币
 }
 
 // 用户余额
@@ -136,7 +134,7 @@ export interface userMoney {
   fireMoneyUsed: number; // 已使用火币
   fireMoneyRemain: number; // 未使用的火币
   vipLevel: number; // vip等级
-  couponsRemain: number; // 未使用的代币 
+  couponsRemain: number; // 未使用的代币
 }
 
 // 代币过期时间信息
@@ -147,8 +145,8 @@ export interface expireInfo {
   expireDate: string; // 过期时间
   source: string; // 来源
   isExpired: boolean; // 是否已过期
-}[]
-
+}
+[];
 
 // 小说目录详情
 export interface volumeInfos {
@@ -351,7 +349,8 @@ export interface tasks {
   comicList: object;
   exp: number;
   extendId: object;
-}[];
+}
+[];
 
 // 定义 Status 接口来表示 status 的结构
 export interface Status {
@@ -370,8 +369,8 @@ export interface Response {
 export type adBonus = Response;
 export type claimTask = Response;
 export type readTime = Response;
-export type share = Response
-export type order = Response
+export type share = Response;
+export type order = Response;
 
 export interface taskBonus {
   status: { httpCode: number; errorCode: number; msgType: number; msg: object };
@@ -386,8 +385,7 @@ export interface taskBonus {
     pearCoin: number;
     luckyDrawCouponNum: number;
   };
-};
-
+}
 
 // { "status": { "httpCode": 201, "errorCode": 200, "msgType": 0, "msg": null }, "data": null }
 export type sendCode = Response;
@@ -397,8 +395,7 @@ export type welfare = Response;
 export type androiddeviceinfos = Response;
 //{"status":{"httpCode":200,"errorCode":200,"msgType":0,"msg":null},"data":null}
 //{"status":{"httpCode":422,"errorCode":727,"msgType":0,"msg":"手机验证码错误"},"data":null}
-export type codeverify = Response
-
+export type codeverify = Response;
 
 // { "status": { "httpCode": 200, "errorCode": 200, "msgType": 0, "msg": null }, "data": { "availableName": "hehdvs3", "nickName": { "valid": true, "msg": "success" } } }
 //{"status":{"httpCode":200,"errorCode":200,"msgType":0,"msg":null},"data":{"availableName":"hehdvs3","nickName":{"valid":false,"msg":"该昵称存在标点符号，请修改"}}}
@@ -412,5 +409,3 @@ export interface regist {
   status: { httpCode: number; errorCode: number; msgType: number; msg: object };
   data: { accountId: number };
 }
-
-
