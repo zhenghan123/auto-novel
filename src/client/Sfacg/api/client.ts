@@ -83,7 +83,7 @@ export class SfacgClient extends SfacgHttp {
             );
             return res.status == 200;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`POST login failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -102,7 +102,7 @@ export class SfacgClient extends SfacgHttp {
             });
             return res.status.httpCode == 200 || 201;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`POST androiddeviceinfos failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -126,7 +126,7 @@ export class SfacgClient extends SfacgHttp {
             };
             return baseinfo;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`GET userInfo failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -146,7 +146,7 @@ export class SfacgClient extends SfacgHttp {
             };
             return money;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`GET userMoney failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -168,7 +168,7 @@ export class SfacgClient extends SfacgHttp {
             });
             return expire as IexpiredInfo[];
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`GET expireInfo failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -183,7 +183,7 @@ export class SfacgClient extends SfacgHttp {
 
             return res;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`GET novelInfo failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -211,7 +211,7 @@ export class SfacgClient extends SfacgHttp {
             const res = await this.get<IsearchInfos[]>(`/authors/${authorId}/novels`);
             return res;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`GET authorBooks failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -270,7 +270,7 @@ export class SfacgClient extends SfacgHttp {
             const response: Buffer = await SfacgHttp.get_rss(url);
             return Buffer.from(response);
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`GET image failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -330,7 +330,7 @@ export class SfacgClient extends SfacgHttp {
             });
             return bookshelfInfos;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`GET bookshelfInfos failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -342,7 +342,7 @@ export class SfacgClient extends SfacgHttp {
             const res = await this.get<typeInfo[]>("/noveltypes");
             return res ?? false;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`GET typeInfo failed: ${JSON.stringify(errMsg)}`);
             throw err;
         }
@@ -367,7 +367,7 @@ export class SfacgClient extends SfacgHttp {
             });
             return tags;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`GET tags failed: ${JSON.stringify(errMsg)}`);
             throw err;
         }
@@ -401,7 +401,7 @@ export class SfacgClient extends SfacgHttp {
             });
             return res.status.httpCode == 201;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`orderChap failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -433,7 +433,7 @@ export class SfacgClient extends SfacgHttp {
             };
             return adBonusNum;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`PUT adBonusNum failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -465,7 +465,7 @@ export class SfacgClient extends SfacgHttp {
             });
             return res.status.httpCode == 200;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             if (errMsg == "该日期已签到，请重新确认并提交") {
                 return true;
             }
@@ -486,7 +486,7 @@ export class SfacgClient extends SfacgHttp {
             });
             return res;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`GET Tasks failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -498,7 +498,7 @@ export class SfacgClient extends SfacgHttp {
             const res = await this.post<claimTask>(`/user/tasks/${id}`, {});
             return res.status.httpCode == 201;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             if (errMsg == "不能重复领取日常任务哦~") {
                 return true;
             }
@@ -519,7 +519,7 @@ export class SfacgClient extends SfacgHttp {
             });
             return res.status.httpCode == 200;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`PUT readTime failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -533,7 +533,7 @@ export class SfacgClient extends SfacgHttp {
             });
             return res.status.httpCode == 200;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`PUT share failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -562,7 +562,7 @@ export class SfacgClient extends SfacgHttp {
             });
             return res.status.httpCode == 201;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`POST NewAccountFollowBonus failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -576,7 +576,7 @@ export class SfacgClient extends SfacgHttp {
             });
             return res.status.httpCode == 201;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`POST NewAccountFavBonus failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -586,7 +586,7 @@ export class SfacgClient extends SfacgHttp {
             const res = await this.post<welfare>(`/user/welfare/storeitemrecords/${recordId}`, {});
             return res.status.httpCode == 200;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response;
             console.error(`POST NewAccountFavBonus failed: ${JSON.stringify(errMsg)}`);
             return false;
         }
@@ -602,21 +602,21 @@ export class SfacgClient extends SfacgHttp {
 //     const a = await Sfacg.novels(0);
 //     console.log(a);
 
-    //   const n = await a.D_novels(0, 720);
-    //   // 第一个是分页，第二个是时间
-    //   console.log(n);
+//   const n = await a.D_novels(0, 720);
+//   // 第一个是分页，第二个是时间
+//   console.log(n);
 
-    //   // await a.login("13696458853", "dddd1111")
-    //   // await a.orderChap(567122, [6981672, 6984421])
+//   // await a.login("13696458853", "dddd1111")
+//   // await a.orderChap(567122, [6981672, 6984421])
 
-    //   // const acc = await a.userInfo()
-    //   // const id = acc && acc.accountId
-    //   // console.log(id);
+//   // const acc = await a.userInfo()
+//   // const id = acc && acc.accountId
+//   // console.log(id);
 
-    //   // if (id) {
-    //   //   const info = await a.androiddeviceinfos(id)
-    //   //   console.log(info);
-    //   // }
-    //   // const b = await a.newSign()
-    //   // console.log(b);
+//   // if (id) {
+//   //   const info = await a.androiddeviceinfos(id)
+//   //   console.log(info);
+//   // }
+//   // const b = await a.newSign()
+//   // console.log(b);
 // })();

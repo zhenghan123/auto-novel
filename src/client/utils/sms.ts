@@ -10,20 +10,6 @@ export enum smsAction {
     get = "getPhone",
 }
 
-const headers = {
-    Accept: "*/*",
-    "Accept-Language": "zh-CN,zh;q=0.9",
-    "Cache-Control": "no-cache",
-    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-    Origin: "https://h5.haozhuma.com",
-    Pragma: "no-cache",
-    "Proxy-Connection": "keep-alive",
-    Referer: "https://h5.haozhuma.com/login.php",
-    "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0",
-    "X-Requested-With": "XMLHttpRequest",
-};
-
 export class sms {
     private userName: string;
     private passWord: string;
@@ -63,7 +49,12 @@ export class sms {
                         username: this.userName,
                         password: this.passWord,
                     },
-                    { headers, timeout: 5000 }
+                    {
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                        },
+                        timeout: 5000,
+                    }
                 );
                 this.token = res.data.token;
                 console.log("登录成功！");
@@ -92,7 +83,11 @@ export class sms {
                     Province: "",
                     ascription: "",
                 },
-                { headers }
+                {
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                    },
+                }
             );
             console.log("获取号码成功！");
             return res.data.phone;
@@ -103,7 +98,9 @@ export class sms {
     private async receive(sid: sid, phone: string): Promise<number | false> {
         try {
             const res = await axios.get("https://api.haozhuma.com/sms", {
-                headers,
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                },
                 params: {
                     api: "getMessage",
                     token: this.token,
