@@ -2,7 +2,6 @@ import { SfacgHttp } from "./basehttp";
 import { nameAvalible, sendCode, codeverify, regist } from "../types/Types";
 
 export class SfacgRegist extends SfacgHttp {
-
     // 名称可用性检测
     async avalibleNmae(name: string): Promise<boolean> {
         try {
@@ -11,10 +10,7 @@ export class SfacgRegist extends SfacgHttp {
             });
             return res.data.nickName.valid;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg
-            console.error(
-                `POST avalibleNmae failed: ${JSON.stringify(errMsg)}`
-            );
+            console.error(`POST avalibleNmae failed`);
             return false;
         }
     }
@@ -25,13 +21,9 @@ export class SfacgRegist extends SfacgHttp {
             const res = await this.post<sendCode>(`/sms/${phone}/86`, "");
             return res.status.httpCode == 201;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg
-            console.error(
-                `POST sendCode failed: ${JSON.stringify(errMsg)}`
-            );
+            console.error(`POST sendCode failed`);
             return false;
         }
-
     }
 
     // 携带验证
@@ -40,24 +32,15 @@ export class SfacgRegist extends SfacgHttp {
             const res = await this.put<codeverify>(`/sms/${phone}/86`, {
                 smsAuthCode: smsAuthCode,
             });
-            return res.status.httpCode == 200
+            return res.status.httpCode == 200;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg
-            console.error(
-                `PUT codeverify failed: ${JSON.stringify(errMsg)}`
-            );
+            console.error(`PUT codeverify failed`);
             return false;
         }
-
     }
 
     // 注册！
-    async regist(
-        passWord: string,
-        nickName: string,
-        phone: string,
-        smsAuthCode: number
-    ) {
+    async regist(passWord: string, nickName: string, phone: string, smsAuthCode: number) {
         try {
             let res = await this.post<regist>("/user", {
                 passWord: passWord,
@@ -71,12 +54,8 @@ export class SfacgRegist extends SfacgHttp {
             let accountID = res.data.accountId;
             return accountID;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg
-            console.error(
-                `POST regist failed: ${JSON.stringify(errMsg)}`
-            );
+            console.error(`POST regist failed`);
             return false;
         }
-
     }
 }

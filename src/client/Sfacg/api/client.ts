@@ -84,7 +84,7 @@ export class SfacgClient extends SfacgHttp {
             return res.status == 200;
         } catch (err: any) {
             const errMsg = err.response.data.status.msg;
-            console.error(`POST login failed: ${JSON.stringify(errMsg)}`);
+            console.error(`POST login failed: ${JSON.stringify(errMsg)}\n` + userName + passWord);
             return false;
         }
     }
@@ -602,21 +602,21 @@ export class SfacgClient extends SfacgHttp {
 //     const a = await Sfacg.novels(0);
 //     console.log(a);
 
-    //   const n = await a.D_novels(0, 720);
-    //   // 第一个是分页，第二个是时间
-    //   console.log(n);
+//   const n = await a.D_novels(0, 720);
+//   // 第一个是分页，第二个是时间
+//   console.log(n);
 
-    //   // await a.login("13696458853", "dddd1111")
-    //   // await a.orderChap(567122, [6981672, 6984421])
+//   // await a.login("13696458853", "dddd1111")
+//   // await a.orderChap(567122, [6981672, 6984421])
 
-    //   // const acc = await a.userInfo()
-    //   // const id = acc && acc.accountId
-    //   // console.log(id);
+//   // const acc = await a.userInfo()
+//   // const id = acc && acc.accountId
+//   // console.log(id);
 
-    //   // if (id) {
-    //   //   const info = await a.androiddeviceinfos(id)
-    //   //   console.log(info);
-    //   // }
-    //   // const b = await a.newSign()
-    //   // console.log(b);
+//   // if (id) {
+//   //   const info = await a.androiddeviceinfos(id)
+//   //   console.log(info);
+//   // }
+//   // const b = await a.newSign()
+//   // console.log(b);
 // })();
