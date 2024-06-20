@@ -498,11 +498,11 @@ export class SfacgClient extends SfacgHttp {
             const res = await this.post<claimTask>(`/user/tasks/${id}`, {});
             return res.status.httpCode == 201;
         } catch (err: any) {
-            const errMsg = err.response.data.status.msg;
+            const errMsg = err.response
             if (errMsg == "不能重复领取日常任务哦~") {
                 return true;
             }
-            console.error(`POST claimTasK${id} failed: ${JSON.stringify(errMsg)}`);
+            console.error(`POST claimTasK${id} `);
             return false;
         }
     }
