@@ -86,6 +86,11 @@ export class Sfacg {
         const id = await selectBookFromList(books as any[]);
         const onId = await question("（无则直接回车）请输入起始Id：");
         await m.MultiBuy(id, onId as number);
+        const t = await question("（需要下载本地直接回车）");
+        if (!t) {
+            const d = new _SfacgDownloader();
+            await d.DownLoad("db", id);
+        }
     }
 
     async ServerDownload() {
