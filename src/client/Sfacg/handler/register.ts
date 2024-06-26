@@ -1,5 +1,5 @@
 import { sid, sms, smsAction } from "../../utils/sms";
-import { RandomName } from "../../utils/tools";
+import { RandomName,Secret } from "../../utils/tools";
 import { SfacgRegist } from "../api/regist";
 import { IaccountInfo } from "../types/ITypes";
 import { _SfacgCache } from "./cache";
@@ -25,13 +25,13 @@ export class _SfacgRegister {
     async register() {
         const phone = await this.GetAvaliblePhone()// 这里已经同时发送短信了，不必重复操作
         const name = await this.GetAvalibleName()
-        console.log(`获取到的昵称：${name}，获取到的手机号：${phone}`);
+        console.log(`获取到的昵称：${name}，获取到的手机号：${Secret(phone)}`);
         if (phone) {
             const code = await this.sms.waitForCode(sid.Sfacg, phone)
             const verify = code && await this.regist.codeverify(phone, code)
             const AcountId = verify && await this.regist.regist(process.env.REGIST_PASSWORD ?? "dddd1111", name, phone, code)
             if (AcountId) {
-                console.log(`注册成功，账号：${phone}，密码：${process.env.REGIST_PASSWORD ?? "dddd1111"}`);
+                console.log(`注册成功`);
                 await _SfacgCache.UpdateAccount({ userName: phone, passWord: process.env.REGIST_PASSWORD ?? "dddd1111" } as IaccountInfo, true)
             }
         }
@@ -46,7 +46,7 @@ export class _SfacgRegister {
     private async GetAvaliblePhone(): Promise<string> {
         await this.sms.login()
         const phone = await this.sms.getPhone(sid.Sfacg)
-        console.log(`获取到的手机号：${phone}`);
+        console.log(`获取到的手机号：${Secret(phone as string)}`);
         const status = phone && this.regist.sendCode(phone)
         !status && this.sms.getPhone(sid.Sfacg, smsAction.cancel)
         return phone ? phone : ""
