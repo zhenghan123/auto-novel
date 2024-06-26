@@ -3,6 +3,7 @@ import { _SfacgTasker } from "./handler/tasker";
 import { _SfacgCache } from "./handler/cache";
 import { _SfacgRegister } from "./handler/register";
 import { _SfacgDownloader } from "./handler/download";
+import { _Total } from "./handler/total";
 import { Multi } from "./handler/multi";
 import { SfacgClient } from "./api/client";
 
@@ -15,6 +16,7 @@ export class Sfacg {
         console.log(colorize("4. 多账号提书", "blue"));
         console.log(colorize("5. 注册机启动！", "blue"));
         console.log(colorize("6. 数据库中下载", "blue"));
+        console.log(colorize("7. 总代币数", "blue"));
         const option = await question(colorize("请输入选项的数字：", "green"));
         switch (option) {
             case "1":
@@ -34,6 +36,9 @@ export class Sfacg {
                 break;
             case "6":
                 this.ServerDownload();
+                break;
+            case "7":
+                await _Total.Total();
                 break;
             default:
                 console.log(colorize("输入的选项不正确，请重新输入。", "yellow"));
@@ -76,6 +81,7 @@ export class Sfacg {
 
     async Bonus() {
         await _SfacgTasker.TaskAll();
+        await _Total.Total();
     }
 
     async Multi() {
