@@ -2,7 +2,7 @@
 run-name: "菠萝包轻小说注册"
 on:
   schedule:
-    - cron: "55 1,9 * * *" # 北京时间上午 9:55 AM，下午 5:55 PM 运行，注册一个号
+    - cron: "18 1,9 * * *" # 北京时间上午 9:55 AM，下午 5:55 PM 运行，注册一个号
   workflow_dispatch: # 允许手动触发工作流
 jobs:
   run-ts-script:
