@@ -51,7 +51,7 @@ export class _SfacgCache {
 			);
 			return null;
 		}
-		console.log(`UpsertAccount successfully ${colorize(`${accountInfo.userName}`, "green")}`);
+		console.log(`UpsertAccount successfully ${colorize(`${Secret(accountInfo.userName)}`, "green")}`);
 	}
 	// 更新用户账号信息
 	static async UpdateAccount(acconutInfo: IaccountInfo, newAccount: boolean = false) {
