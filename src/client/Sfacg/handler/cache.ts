@@ -1,6 +1,6 @@
 import { IaccountInfo, _dbChapters, _dbNovels } from "../types/ITypes";
 import { Server } from "../../utils/db";
-import { colorize } from "../../utils/tools";
+import { colorize,Secret } from "../../utils/tools";
 import { SfacgClient } from "../api/client";
 import { novelInfo } from "../types/Types";
 
@@ -46,7 +46,7 @@ export class _SfacgCache {
 		});
 		if (error) {
 			console.log(
-				`Error UpsertAccount: ${colorize(`${accountInfo.userName}`, "purple")} `,
+				`Error UpsertAccount: ${colorize(`${Secret(accountInfo.userName)}`, "purple")} `,
 				error
 			);
 			return null;
