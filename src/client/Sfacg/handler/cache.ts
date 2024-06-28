@@ -46,12 +46,12 @@ export class _SfacgCache {
 		});
 		if (error) {
 			console.log(
-				`Error UpsertAccount: ${colorize(`${Secret(accountInfo.userName)}`, "purple")} `,
+				`Error UpsertAccount: ${colorize(`${Secret(accountInfo.userName as string)}`, "purple")} `,
 				error
 			);
 			return null;
 		}
-		console.log(`UpsertAccount successfully ${colorize(`${Secret(accountInfo.userName)}`, "green")}`);
+		console.log(`UpsertAccount successfully ${colorize(`${Secret(accountInfo.userName as string)}`, "green")}`);
 	}
 	// 更新用户账号信息
 	static async UpdateAccount(acconutInfo: IaccountInfo, newAccount: boolean = false) {
