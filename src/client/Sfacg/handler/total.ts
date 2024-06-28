@@ -10,6 +10,12 @@ export class _Total {
         this.Client = Client;
     }
     static async Total() {
+        // const accounts = await _SfacgCache.GetallCookies();
+        // if (accounts) {
+        //     accounts.map(async (account) => {
+        //     _SfacgCache.UpdateAccount(account)
+        //     });
+        // }
         let coin =await _SfacgCache.GetAccountMoney();
         let i,allcoin = 0;
         if(coin){
