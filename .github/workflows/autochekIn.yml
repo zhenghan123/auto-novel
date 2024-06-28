@@ -2,7 +2,7 @@
 run-name: "菠萝包轻小说自动签到"
 on:
   schedule:
-    - cron: "36 8 * * *" # 每天UTC时间10点运行，对应北京时间下午6点
+    - cron: "36 1 * * *" # 每天UTC时间10点运行，对应北京时间下午6点
   workflow_dispatch: # 允许手动触发工作流
 jobs:
   run-ts-script:
