@@ -154,7 +154,7 @@ export class _SfacgDownloader {
                 func().then((e) => {
                     r(e);
                 });
-            }, 600);
+            }, 800);
         });
     };
     async ServerDownload(volumeInfo: IvolumeInfos) {

@@ -117,6 +117,12 @@ export class Multi {
 
     async MultiBuy(novelId: number, onId?: number, chapIds?: number[]) {
         await this.Buy(novelId, onId, chapIds);
+        const accounts = await _SfacgCache.GetallCookies();
+        if (accounts) {
+            accounts.map(async (account) => {
+            _SfacgCache.UpdateAccount(account)
+            });
+        }
     }
 }
 

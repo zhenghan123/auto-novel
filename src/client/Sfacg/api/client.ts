@@ -256,14 +256,30 @@ export class SfacgClient extends SfacgHttp {
             });
             const content = decrypt(res.expand.content);
             return content;
-            // 待添加
         } catch (err: any) {
-            console.error(
-                `GET contentInfos failed: ${JSON.stringify(err.response.data.status.msg)}`
-            );
+            // 检查err.response及其嵌套属性是否存在，如果不存在则使用err.message
+            const errorMessage = err.response && err.response.data && err.response.data.status && err.response.data.status.msg
+                ? JSON.stringify(err.response.data.status.msg)
+                : err.message;
+            console.error(`GET contentInfos failed: ${errorMessage}`);
             return false;
         }
     }
+    // async contentInfos(chapId: number): Promise<string | false> {
+    //     try {
+    //         let res = await this.get<contentInfos>(`/Chaps/${chapId}`, {
+    //             expand: "content",
+    //         });
+    //         const content = decrypt(res.expand.content);
+    //         return content;
+    //         // 待添加
+    //     } catch (err: any) {
+    //         console.error(
+    //             `GET contentInfos failed: ${JSON.stringify(err.response.data.status.msg)}`
+    //         );
+    //         return false;
+    //     }
+    // }
 
     static async image(url: string): Promise<any> {
         try {

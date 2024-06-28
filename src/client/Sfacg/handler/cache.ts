@@ -1,6 +1,6 @@
 import { IaccountInfo, _dbChapters, _dbNovels } from "../types/ITypes";
 import { Server } from "../../utils/db";
-import { colorize,Secret } from "../../utils/tools";
+import { colorize, Secret } from "../../utils/tools";
 import { SfacgClient } from "../api/client";
 import { novelInfo } from "../types/Types";
 
@@ -165,6 +165,7 @@ export class _SfacgCache {
 
 		return Ids;
 	}
+
 
 	static async GetChapterContent(chapId: number) {
 		for (let i = 0; i < 3; i++) {
