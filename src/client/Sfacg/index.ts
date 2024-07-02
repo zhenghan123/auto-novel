@@ -6,6 +6,7 @@ import { _SfacgDownloader } from "./handler/download";
 import { _Total } from "./handler/total";
 import { Multi } from "./handler/multi";
 import { SfacgClient } from "./api/client";
+import { DEV } from "./handler/DEV";
 
 export class Sfacg {
     async init() {
@@ -16,7 +17,8 @@ export class Sfacg {
         console.log(colorize("4. 多账号提书", "blue"));
         console.log(colorize("5. 注册机启动！", "blue"));
         console.log(colorize("6. 数据库中下载", "blue"));
-        console.log(colorize("7. 总代币数", "blue"));
+        console.log(colorize("7. 数据库内容迁移，建议先做备份", "blue"));
+        console.log(colorize("8. 统计总代币", "blue"));
         const option = await question(colorize("请输入选项的数字：", "green"));
         switch (option) {
             case "1":
@@ -38,6 +40,9 @@ export class Sfacg {
                 this.ServerDownload();
                 break;
             case "7":
+                this.S3move();
+                break;
+            case "8":
                 await _Total.Total();
                 break;
             default:
@@ -82,6 +87,16 @@ export class Sfacg {
     async Bonus() {
         await _SfacgTasker.TaskAll();
         await _Total.Total();
+    }
+
+    async S3move() {
+        console.log("注意要先到SupaBase中将content设置为AllowNulladble");
+        console.log("注册tebi后env中要添加以下下三样\nACCESSKEYID=\nSECRETACCESSKEY=\nBUCKET=");
+        console.log("2s后开始迁移");
+        await new Promise((r) => {
+            setTimeout(r, 2000);
+        });
+        await DEV();
     }
 
     async Multi() {
