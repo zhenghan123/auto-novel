@@ -6,7 +6,7 @@ on:
   workflow_dispatch: # 允许手动触发工作流
 jobs:
   run-ts-script:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     environment: supabase
     steps:
       - uses: actions/checkout@v4
