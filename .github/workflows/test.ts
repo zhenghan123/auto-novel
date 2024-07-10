@@ -1,5 +1,5 @@
-name: "菠萝包轻小说注册"
-run-name: "菠萝包轻小说注册"
+name: "test"
+run-name: "test"
 on:
   #schedule:
   #  - cron: "18 1,9 * * *" # 北京时间上午 9:55 AM，下午 5:55 PM 运行，注册一个号
