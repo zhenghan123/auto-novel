@@ -88,6 +88,9 @@ export class Sfacg {
         await _SfacgTasker.TaskAll();
         await _Total.Total();
     }
+    async Total() {
+        await _Total.Total();
+    }
 
     async S3move() {
         console.log("注意要先到SupaBase中将content设置为AllowNulladble");
