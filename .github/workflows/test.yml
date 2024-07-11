@@ -1,8 +1,8 @@
-﻿name: "菠萝包轻小说自动签到"
-run-name: "菠萝包轻小说自动签到"
+name: "test"
+run-name: "test"
 on:
-  schedule:
-    - cron: "36 0 * * *" # 每天UTC时间10点运行，对应北京时间下午6点
+  #schedule:
+  #  - cron: "18 1,9 * * *" # 北京时间上午 9:55 AM，下午 5:55 PM 运行，注册一个号
   workflow_dispatch: # 允许手动触发工作流
 jobs:
   run-ts-script:
@@ -33,7 +33,7 @@ jobs:
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           REGIST_PASSWORD: ${{ secrets.REGIST_PASSWORD }}
-        run: pnpm run checkin
+        run: pnpm run test
 
       # # 其他可能的优化步骤
       # - name: Cache node modules
